@@ -64,9 +64,12 @@
     <Compile Include="Assets\Scripts\Pools\ObjPool.cs" />
     <Compile Include="Assets\Scripts\Actors\Zappinator.cs" />
     <Compile Include="Assets\Scripts\Actors\Obstacle.cs" />
+    <Compile Include="Assets\Scripts\Spawner\ObstacleSpawner.cs" />
     <Compile Include="Assets\Scripts\Actors\DeathWall.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenuUI.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />
+    <Compile Include="Assets\Scripts\UI\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
