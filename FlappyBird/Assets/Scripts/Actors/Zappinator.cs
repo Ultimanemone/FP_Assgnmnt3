@@ -1,22 +1,33 @@
+using Flappy_Assgnmt3.Core;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class Zappinator : Obstacle
+namespace Flappy_Assgnmt3.Actors
 {
-    [SerializeField] private VisualEffect _effect;
-
-
-    private void Awake()
+    public class Zappinator : Obstacle
     {
-        _effect.SetInt("size", (int)Mathf.Round(10f * (_effect.GetVector3("start") + _effect.GetVector3("end")).magnitude));
-    }
+        private VisualEffect _effect;
 
-    protected override void OnFixedUpdate()
-    {
-        if (_effect != null && !Utils.IsWithinBounds(_effect.GetVector3("end")) && !Utils.IsWithinBounds(_effect.GetVector3("start")))
+        private void Awake()
         {
-            gameObject.SetActive(false);
-            // ObjPool.Return(self);
+            _effect = GetComponent<VisualEffect>();
+        }
+
+        public void Init(Vector3 start, Vector3 end, int size = 10, float noiseOffset = 0.05f, float width = 0.01f)
+        {
+            _effect.SetInt("size", size);
+            _effect.SetFloat("noiseOffset", noiseOffset);
+            _effect.SetFloat("width", width);
+            _effect.SetVector3("start", start);
+            _effect.SetVector3("end", end);
+        }
+
+        protected override void OnFixedUpdate()
+        {
+            if (_effect != null && !Utils.IsWithinBounds(transform.localPosition))
+            {
+                _pool.Return(gameObject);
+            }
         }
     }
 }

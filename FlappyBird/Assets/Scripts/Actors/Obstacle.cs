@@ -1,11 +1,30 @@
+using Flappy_Assgnmt3.Core;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+namespace Flappy_Assgnmt3.Actors
 {
-    protected void FixedUpdate()
+    public class Obstacle : MonoBehaviour
     {
-        OnFixedUpdate();
-    }
+        protected ObjPool _pool;
 
-    protected virtual void OnFixedUpdate() { }
+        public void SetPool(ObjPool pool)
+        {
+            _pool = pool;
+        }
+
+        protected void FixedUpdate()
+        {
+            OnFixedUpdate();
+            Move();
+        }
+
+        protected virtual void OnFixedUpdate() { }
+
+        protected virtual void Move()
+        {
+            Vector3 pos = transform.localPosition;
+            pos.x -= BattleSceneManager.instance.speed * Time.deltaTime;
+            transform.localPosition = pos;
+        }
+    }
 }
