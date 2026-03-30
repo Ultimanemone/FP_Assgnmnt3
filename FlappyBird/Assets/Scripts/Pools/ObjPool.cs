@@ -3,6 +3,16 @@ using UnityEngine;
 
 namespace Flappy_Assgnmt3.Actors
 {
+    public class PooledObj : MonoBehaviour
+    {
+        protected ObjPool _pool;
+
+        public void SetPool(ObjPool pool)
+        {
+            _pool = pool;
+        }
+    }
+
     public class ObjPool
     {
         private Queue<GameObject> _inactive = new Queue<GameObject>();
@@ -23,6 +33,7 @@ namespace Flappy_Assgnmt3.Actors
                 _pool.Add(obj);
                 _inactive.Enqueue(obj);
                 obj.SetActive(false);
+                obj.GetComponent<PooledObj>()?.SetPool(this);
             }
         }
 

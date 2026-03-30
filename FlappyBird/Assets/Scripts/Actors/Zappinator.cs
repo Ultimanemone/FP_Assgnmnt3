@@ -4,7 +4,7 @@ using UnityEngine.VFX;
 
 namespace Flappy_Assgnmt3.Actors
 {
-    public class Zappinator : Obstacle
+    public class Zappinator : IdlePooledObj
     {
         private VisualEffect _effect;
 

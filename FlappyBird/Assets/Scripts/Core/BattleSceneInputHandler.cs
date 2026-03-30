@@ -1,3 +1,4 @@
+using Flappy_Assgnmt3.Actors;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +25,12 @@ namespace Flappy_Assgnmt3.Core
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
             {
                 BattleSceneManager.instance.TogglePauseMenu();
+            }
+
+
+            if (Keyboard.current.spaceKey.wasPressedThisFrame && BattleSceneManager.instance.state == BattleSceneState.Playing)
+            {
+                Player.instance.Flap();
             }
         }
 

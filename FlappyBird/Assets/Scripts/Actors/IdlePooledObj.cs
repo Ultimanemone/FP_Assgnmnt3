@@ -3,15 +3,8 @@ using UnityEngine;
 
 namespace Flappy_Assgnmt3.Actors
 {
-    public class Obstacle : MonoBehaviour
+    public class IdlePooledObj : PooledObj
     {
-        protected ObjPool _pool;
-
-        public void SetPool(ObjPool pool)
-        {
-            _pool = pool;
-        }
-
         protected void FixedUpdate()
         {
             OnFixedUpdate();

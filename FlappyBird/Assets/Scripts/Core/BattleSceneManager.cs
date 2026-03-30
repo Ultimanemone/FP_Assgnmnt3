@@ -4,6 +4,7 @@ namespace Flappy_Assgnmt3.Core
 {
     public enum BattleSceneState
     {
+        Ready,
         Playing,
         Paused
     }

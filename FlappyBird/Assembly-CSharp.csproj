@@ -64,13 +64,15 @@
     <Compile Include="Assets\Scripts\Pools\ObjPool.cs" />
     <Compile Include="Assets\Scripts\Actors\Zappinator.cs" />
     <Compile Include="Assets\Scripts\Core\SettingsData.cs" />
-    <Compile Include="Assets\Scripts\Actors\Obstacle.cs" />
+    <Compile Include="Assets\Scripts\Actors\Player.cs" />
     <Compile Include="Assets\Scripts\Core\BattleSceneInputHandler.cs" />
     <Compile Include="Assets\Scripts\Core\BattleSceneManager.cs" />
     <Compile Include="Assets\Scripts\BackgroundController\ParallaxBackground.cs" />
     <Compile Include="Assets\Scripts\Core\Bootstrapper.cs" />
+    <Compile Include="Assets\Scripts\Actors\IdlePooledObj.cs" />
     <Compile Include="Assets\Scripts\Actors\DeathWall.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\Actors\MovingObj.cs" />
     <Compile Include="Assets\Scripts\Core\AspectRatio.cs" />
     <Compile Include="Assets\Scripts\Core\GameManager.cs" />
     <Compile Include="Assets\Scripts\Core\Spawner.cs" />

@@ -15,10 +15,6 @@ namespace Flappy_Assgnmt3.Actors
             _prev = 0f;
             _counter = 0f;
             _pool = new ObjPool(_zappinator, 40, transform);
-            foreach (GameObject obj in _pool.Pool)
-            {
-                obj.GetComponent<Zappinator>()?.SetPool(_pool);
-            }
         }
 
         private void FixedUpdate()
@@ -34,7 +30,7 @@ namespace Flappy_Assgnmt3.Actors
         private void Spawn()
         {
             _prev = _prev + Random.Range(-1f, 1f);
-            float halfGap = Random.Range(1f, 2f) / 2f;
+            float halfGap = Random.Range(2f, 3f) / 2f;
 
             if (_pool.TryGet(out GameObject arcTop))
             {
