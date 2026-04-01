@@ -7,9 +7,9 @@ namespace Flappy_Assgnmt3.Core
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager instance { get; private set; }
-        public string currentScene { get; private set; }
-        public bool isPaused { get; private set; }
+        public static GameManager Instance { get; private set; }
+        public string CurrentScene { get; private set; }
+        public bool IsPaused { get; private set; }
         [SerializeField] private AudioSource _music;
         [SerializeField] private AudioSource _sfx;
         private bool _isPlaying;
@@ -19,14 +19,14 @@ namespace Flappy_Assgnmt3.Core
 
         private void Awake()
         {
-            if (instance != null && instance != this)
+            if (Instance != null && Instance != this)
             {
                 Debug.LogError($"Duplicate GameManager on {gameObject.name}!");
                 Destroy(gameObject);
                 return;
             }
 
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
             DontDestroyOnLoad(_music);
 
@@ -38,14 +38,14 @@ namespace Flappy_Assgnmt3.Core
 
         private void OnDestroy()
         {
-            if (instance == this)
+            if (Instance == this)
                 SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            currentScene = scene.name;
-            isPaused = false;
+            CurrentScene = scene.name;
+            IsPaused = false;
             Time.timeScale = 1f;
             _music.Stop();
         }
@@ -56,7 +56,7 @@ namespace Flappy_Assgnmt3.Core
         public void LoadScene(string scene)
         {
             SceneManager.LoadScene(scene);
-            instance.currentScene = scene;
+            Instance.CurrentScene = scene;
         }
 
         /// <summary>
@@ -81,8 +81,17 @@ namespace Flappy_Assgnmt3.Core
         /// </summary>
         public void SetPaused(bool paused)
         {
-            isPaused = paused;
+            IsPaused = paused;
             Time.timeScale = paused ? 0f : 1f;
+        }
+
+        /// <summary>
+        /// Toggle pausing
+        /// </summary>
+        public void TogglePause()
+        {
+            IsPaused = !IsPaused;
+            Time.timeScale = IsPaused ? 0f : 1f;
         }
 
         /// <summary>

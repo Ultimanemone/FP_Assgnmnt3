@@ -6,9 +6,15 @@ namespace Flappy_Assgnmt3.Core
     {
         public static bool IsWithinBounds(Vector2 pos)
         {
-            float hori = 7f;
-            float vert = 5f;
+            float hori = 8f;
+            float vert = 6f;
             return pos.x < hori && pos.x > -hori && pos.y < vert && pos.y > -vert;
         }
+    }
+
+    public static class GameConstants
+    {
+        public const float ppu = 32f;
+        public const float upp = 1f / ppu;
     }
 }

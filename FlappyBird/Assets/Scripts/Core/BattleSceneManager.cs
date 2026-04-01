@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace Flappy_Assgnmt3.Core
@@ -6,73 +7,145 @@ namespace Flappy_Assgnmt3.Core
     {
         Ready,
         Playing,
-        Paused
+        Paused,
+        Result
     }
 
     public class BattleSceneManager : MonoBehaviour
     {
         [SerializeField] private GameObject _pausedMenu;
+        [SerializeField] private GameObject _scoreMenu;
+        [SerializeField] private GameObject _resultMenu;
+        private TextMeshProUGUI _scoreText;
 
-        public static BattleSceneManager instance { get; private set; }
-        public BattleSceneState state { get; private set; }
-        public float speed { get; private set; }
+        public static BattleSceneManager Instance { get; private set; }
+        public BattleSceneState State { get; private set; }
+        private BattleSceneState _prevState;
+        public float Speed
+        {
+            get
+            {
+                return _speedCurve.Evaluate(Timer);
+            }
+        }
+        public float Difficulty
+        {
+            get
+            {
+                return _diffCurve.Evaluate(Timer);
+            }
+        }
+        [SerializeField] private AnimationCurve _speedCurve;
+        [SerializeField] private AnimationCurve _diffCurve;
+        public float Score
+        {
+            get
+            {
+                return Mathf.Round(_score * 5f);
+            }
+        }
+        private float _score;
         private float _timer;
+        public float Timer
+        {
+            get
+            {
+                return _timer;
+            }
+        }
 
         private void Awake()
         {
-            if (instance != null && instance != this)
+            if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
 
-            instance = this;
+            Instance = this;
             _pausedMenu.SetActive(false);
+            _resultMenu.SetActive(false);
+            _scoreMenu.SetActive(false);
+            _scoreText = _scoreMenu.GetComponent<TextMeshProUGUI>();
         }
 
         private void Start()
         {
-            GameManager.instance.PlayMusic(true);
+            GameManager.Instance.PlayMusic(true);
             _timer = 0f;
-            state = BattleSceneState.Playing;
-            speed = 1f;
+            State = BattleSceneState.Ready;
         }
 
         private void FixedUpdate()
         {
+            _timer += Time.deltaTime;
+            if (State == BattleSceneState.Playing) _score += Time.deltaTime * Speed;
 
+            if (_timer >= 3f && State != BattleSceneState.Playing && State != BattleSceneState.Result)
+            {
+                ChangeState(BattleSceneState.Playing);
+                _scoreMenu.SetActive(true);
+            }
+            _scoreText.text = Score.ToString();
         }
 
-        private void Update()
+        private void ChangeState(BattleSceneState newState)
         {
+            if (newState != State)
+            {
+                _prevState = State;
+                State = newState;
+            }
+        }
 
+        private void RevertState()
+        {
+            BattleSceneState temp = State;
+            State = _prevState;
+            _prevState = temp;
         }
 
         public void TogglePauseMenu()
         {
-            bool pauseState = GameManager.instance.isPaused;
-            _pausedMenu.SetActive(!pauseState);
-
-            if (!pauseState)
+            if (State != BattleSceneState.Result)
             {
-                state = BattleSceneState.Paused;
-            }
-            else
-            {
-                state = BattleSceneState.Playing;
-            }
+                GameManager.Instance.TogglePause();
+                bool pauseState = GameManager.Instance.IsPaused;
+                _pausedMenu.SetActive(pauseState);
+                _scoreMenu.SetActive(!pauseState);
 
-            GameManager.instance.SetPaused(!pauseState);
+                if (pauseState)
+                {
+                    ChangeState(BattleSceneState.Paused);
+                }
+                else
+                {
+                    RevertState();
+                }
+            }
         }
 
-        public void QuitToTitle()
+        public void AddScore(float score)
         {
-            GameManager.instance.LoadScene("Title");
+            _score += score;
         }
 
         public void Finish()
         {
+            ChangeState(BattleSceneState.Result);
+            _resultMenu.SetActive(true);
+            _resultMenu.GetComponent<Animator>().Play("finish");
+            _scoreMenu.GetComponent<Animator>().Play("finish");
+        }
 
+        public static void QuitGame()
+        {
+            GameManager.Instance.QuitGame();
+        }
+
+        public static void RestartGame()
+        {
+            GameManager.Instance.LoadScene("Game");
         }
     }
 }

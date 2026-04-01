@@ -22,15 +22,21 @@ namespace Flappy_Assgnmt3.Core
 
         private void Update()
         {
-            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            bool flag0 = BattleSceneManager.Instance.State == BattleSceneState.Playing;
+            bool flag1 = BattleSceneManager.Instance.State == BattleSceneState.Paused;
+            if (Keyboard.current.escapeKey.wasPressedThisFrame && (flag0 || flag1))
             {
-                BattleSceneManager.instance.TogglePauseMenu();
+                BattleSceneManager.Instance.TogglePauseMenu();
             }
 
-
-            if (Keyboard.current.spaceKey.wasPressedThisFrame && BattleSceneManager.instance.state == BattleSceneState.Playing)
+            if (Keyboard.current.spaceKey.wasPressedThisFrame && flag0)
             {
                 Player.instance.Flap();
+            }
+
+            if (Keyboard.current.enterKey.wasPressedThisFrame && BattleSceneManager.Instance.State == BattleSceneState.Result)
+            {
+                GameManager.Instance.LoadScene("Game");
             }
         }
 
