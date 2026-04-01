@@ -71,13 +71,16 @@ namespace Flappy_Assgnmt3.Core
 
         private void Start()
         {
-            GameManager.Instance.PlayMusic(true);
+            AudioPlayer.Instance.ToggleMusic(true);
             _timer = 0f;
             State = BattleSceneState.Ready;
         }
 
         private void FixedUpdate()
         {
+            if (_timer >= 0f && _timer < (0f + Time.deltaTime)) AudioPlayer.Instance.PlayClipID((int)SFXID.TICK);
+            if (_timer >= 1f && _timer < (1f + Time.deltaTime)) AudioPlayer.Instance.PlayClipID((int)SFXID.TICK);
+            if (_timer >= 2f && _timer < (2f + Time.deltaTime)) AudioPlayer.Instance.PlayClipID((int)SFXID.TICK);
             _timer += Time.deltaTime;
             if (State == BattleSceneState.Playing) _score += Time.deltaTime * Speed;
 
@@ -85,12 +88,15 @@ namespace Flappy_Assgnmt3.Core
             {
                 ChangeState(BattleSceneState.Playing);
                 _scoreMenu.SetActive(true);
+                AudioPlayer.Instance.PlayClipID((int)SFXID.START);
             }
             _scoreText.text = Score.ToString();
         }
 
         private void ChangeState(BattleSceneState newState)
         {
+            if (State != BattleSceneState.Paused && newState == BattleSceneState.Paused) AudioPlayer.Instance.PlayClipID((int)SFXID.PAUSE);
+
             if (newState != State)
             {
                 _prevState = State;
@@ -100,6 +106,7 @@ namespace Flappy_Assgnmt3.Core
 
         private void RevertState()
         {
+            if (State == BattleSceneState.Paused) AudioPlayer.Instance.PlayClipID((int)SFXID.UNPAUSE);
             BattleSceneState temp = State;
             State = _prevState;
             _prevState = temp;
@@ -136,6 +143,7 @@ namespace Flappy_Assgnmt3.Core
             _resultMenu.SetActive(true);
             _resultMenu.GetComponent<Animator>().Play("finish");
             _scoreMenu.GetComponent<Animator>().Play("finish");
+            AudioPlayer.Instance.PlayClipID((int)SFXID.LOSE);
         }
 
         public static void QuitGame()

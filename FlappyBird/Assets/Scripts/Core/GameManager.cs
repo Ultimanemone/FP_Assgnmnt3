@@ -10,10 +10,7 @@ namespace Flappy_Assgnmt3.Core
         public static GameManager Instance { get; private set; }
         public string CurrentScene { get; private set; }
         public bool IsPaused { get; private set; }
-        [SerializeField] private AudioSource _music;
-        [SerializeField] private AudioSource _sfx;
-        private bool _isPlaying;
-        private float _sfxVol = 1f;
+        [SerializeField] private AudioPlayer audioPlayer;
 
         private GameManager() { }
 
@@ -28,11 +25,12 @@ namespace Flappy_Assgnmt3.Core
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(_music);
+            DontDestroyOnLoad(audioPlayer.gameObject);
 
             SceneManager.sceneLoaded += OnSceneLoaded;
+
 #if !UNITY_EDITOR
-            LoadScene("Title");
+            LoadScene("Game");
 #endif
         }
 
@@ -47,7 +45,6 @@ namespace Flappy_Assgnmt3.Core
             CurrentScene = scene.name;
             IsPaused = false;
             Time.timeScale = 1f;
-            _music.Stop();
         }
 
         /// <summary>
@@ -103,49 +100,9 @@ namespace Flappy_Assgnmt3.Core
             Application.Quit();
         }
 
-        public void PlayMusic(bool play)
-        {
-            if (play)
-            {
-                _music.Play();
-                _isPlaying = true;
-            }
-            else
-            {
-                _music.Stop();
-                _isPlaying = false;
-            }
-        }
-
-        public void ToggleMusic()
-        {
-            if (_isPlaying)
-            {
-                _music.Pause();
-                _isPlaying = false;
-            }
-            else
-            {
-                _music.UnPause();
-                _isPlaying = true;
-            }
-        }
-
-        public void PlaySFX(AudioClip audioClip, float volume = 1f)
-        {
-            AudioSource source = Instantiate(_sfx);
-            source.clip = audioClip;
-            source.volume = _sfxVol * volume;
-            source.Play();
-            Destroy(source.gameObject, audioClip.length + 1f);
-            //Destroy(source.gameObject, 3f);
-        }
-
         private void Update()
         {
             Scene scene = SceneManager.GetActiveScene();
-            _music.volume = SettingsData.instance.musicVol / 4f * 0.8f;
-            _sfxVol = SettingsData.instance.sfxVol / 4f;
         }
     }
 }

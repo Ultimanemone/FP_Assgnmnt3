@@ -1047,6 +1047,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 618302255}
+        m_TargetAssemblyTypeName: Flappy_Assgnmt3.Core.AudioPlayerWrapper, Assembly-CSharp
+        m_MethodName: PlayClipID
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &182669113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2255,6 +2267,7 @@ GameObject:
   - component: {fileID: 618302251}
   - component: {fileID: 618302253}
   - component: {fileID: 618302254}
+  - component: {fileID: 618302255}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2367,6 +2380,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1843fea6fc1219b4bb0b3bbf0e0e8791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &618302255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618302250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3499baec66c0bff4186f7f9515a0b1c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &623482358
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,7 +2426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -600, y: 0}
+  m_AnchoredPosition: {x: -450, y: 0}
   m_SizeDelta: {x: 800, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &623482360
@@ -10453,6 +10478,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 618302255}
+        m_TargetAssemblyTypeName: Flappy_Assgnmt3.Core.AudioPlayerWrapper, Assembly-CSharp
+        m_MethodName: PlayClipID
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

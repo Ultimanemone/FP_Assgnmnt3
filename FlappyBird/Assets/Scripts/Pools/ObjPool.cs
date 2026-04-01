@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Flappy_Assgnmt3.Actors
+namespace Flappy_Assgnmt3.Core
 {
     public class PooledObj : MonoBehaviour
     {
@@ -34,6 +34,14 @@ namespace Flappy_Assgnmt3.Actors
                 _inactive.Enqueue(obj);
                 obj.SetActive(false);
                 obj.GetComponent<PooledObj>()?.SetPool(this);
+            }
+        }
+
+        public void DontDestroyOnLoad()
+        {
+            foreach (GameObject obj in _pool)
+            {
+                Object.DontDestroyOnLoad(obj);
             }
         }
 

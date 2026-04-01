@@ -25,8 +25,8 @@ namespace Flappy_Assgnmt3.Actors
         private void Awake()
         {
             _prev = 0f;
-            _pipeCounter = 0f;
-            _appleCounter = -1.5f;
+            _pipeCounter = 3f;
+            _appleCounter = 1.5f;
             _idlePipePool = new ObjPool(_pipe, 20, transform);
             _movingPipePool = new ObjPool(_movingPipe, 10, transform);
             _applePool = new ObjPool(_apple, 20, transform);
@@ -34,20 +34,23 @@ namespace Flappy_Assgnmt3.Actors
 
         private void FixedUpdate()
         {
-            float delta = BattleSceneManager.Instance.Speed * Time.deltaTime;
-            _pipeCounter += delta;
-            _appleCounter += delta;
-
-            if (_pipeCounter > 3f)
+            if (BattleSceneManager.Instance.State == BattleSceneState.Playing)
             {
-                SpawnPipe();
-                _pipeCounter = 0f;
-            }
+                float delta = BattleSceneManager.Instance.Speed * Time.deltaTime;
+                _pipeCounter += delta;
+                _appleCounter += delta;
 
-            if (_appleCounter > 3f)
-            {
-                SpawnApple();
-                _appleCounter = 0f;
+                if (_pipeCounter > 3f)
+                {
+                    SpawnPipe();
+                    _pipeCounter = 0f;
+                }
+
+                if (_appleCounter > 3f)
+                {
+                    SpawnApple();
+                    _appleCounter = 0f;
+                }
             }
         }
 

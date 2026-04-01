@@ -149,8 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2826612fea2ae444d89b435443d78c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _music: {fileID: 890863960}
-  _sfx: {fileID: 8554149019254597667, guid: f9b4988e9b4ab004498d4469db547d36, type: 3}
+  audioPlayer: {fileID: 890863962}
 --- !u!4 &68184967
 Transform:
   m_ObjectHideFlags: 0
@@ -190,8 +189,9 @@ GameObject:
   m_Component:
   - component: {fileID: 890863961}
   - component: {fileID: 890863960}
+  - component: {fileID: 890863962}
   m_Layer: 0
-  m_Name: Music
+  m_Name: AudioPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +208,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: f8220d1029f5f8e4dac8b6511e6f2a4f, type: 3}
+  m_Resource: {fileID: 8300000, guid: 8be302a3f319fd74f9ca1c4779f64801, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -309,6 +309,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &890863962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890863959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c8e422058939649b4b4b0554d934a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxList:
+  - {fileID: 8300000, guid: c62119d5bef09114aa8c7946b8e12a37, type: 3}
+  - {fileID: 8300000, guid: 4b504414bd7cf494987b823ade16a50f, type: 3}
+  - {fileID: 8300000, guid: 7d893bbddc7fa3f4fb3afe52b1cfbbe0, type: 3}
+  - {fileID: 8300000, guid: d44cd760d49113d4896827bfbd1ffc8a, type: 3}
+  - {fileID: 8300000, guid: 32424c2c40e5a2b4aa99dcf4df0da970, type: 3}
+  - {fileID: 8300000, guid: 76e66593719f7cf4ab610bcbceb59971, type: 3}
+  - {fileID: 8300000, guid: edec2b89e4697a746944e7a15d969ab1, type: 3}
+  - {fileID: 8300000, guid: fc4a274e792a98e469e525788eaeb499, type: 3}
+  _pooledAudioObj: {fileID: 7643215643057630079, guid: d0777dfa22d9daf409f6bb751fae7ae6, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

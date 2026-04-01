@@ -42,8 +42,8 @@ namespace Flappy_Assgnmt3.Actors
             _sr.color = Color.clear;
             _ps.Play();
             _eaten = true;
+            AudioPlayer.Instance.PlayClipID((int)SFXID.APPLE, 0.7f);
             StartCoroutine(ReturnCR());
-            Debug.Log("apple");
         }
 
         private IEnumerator ReturnCR()

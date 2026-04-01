@@ -62,6 +62,7 @@ namespace Flappy_Assgnmt3.Actors
             _speed.y = 3f;
             Animate(AnimState.FLAP);
             _ps.Play();
+            AudioPlayer.Instance.PlayClipID((int)SFXID.FLAP);
         }
 
         private void Animate(AnimState state = AnimState.IDLE)
