@@ -12,7 +12,6 @@
  
  **4.** Once the project is successfully loaded in the editor, go to `File` -> `Build and Run` to compile and launch the game. The resulting game will be stored in the `Build` folder in the root folder of the repo.
 
----
 
 ## Controls
 
@@ -20,7 +19,6 @@
 
 * **ESC key**: press to pause the game
 
----
 
 ## Features
 
@@ -28,7 +26,6 @@
 * Procedurally generated obstacles and collectibles
 * SFX and VFX corresponding with the player's actions
 
----
 
 ## Parallax Background
 
@@ -37,7 +34,6 @@
 * When the leftmost part scrolls outside of the player's view, it is then moved to the right so that the edge is exactly next to the rightmost part.
 * This is repeated to create an infinitely scrolling backgroun
 
----
 
 ## Asset sources
 * [BoldPixels Font](https://assetstore.unity.com/packages/2d/fonts/boldpixels-font-332078)
