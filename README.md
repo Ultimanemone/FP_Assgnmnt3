@@ -39,6 +39,7 @@
 * [BoldPixels Font](https://assetstore.unity.com/packages/2d/fonts/boldpixels-font-332078)
 * [Pixel Adventure 1](https://assetstore.unity.com/packages/2d/characters/pixel-adventure-1-155360)
 * [2D Pixel Art Platformer | Biome - American Forest](https://assetstore.unity.com/packages/2d/environments/2d-pixel-art-platformer-biome-american-forest-255694)
+* [FREE Casual Game SFX Pack](https://assetstore.unity.com/packages/audio/sound-fx/free-casual-game-sfx-pack-54116)
 * Shostakovich - Jazz Suite No. 1: I. Waltz
 
 
